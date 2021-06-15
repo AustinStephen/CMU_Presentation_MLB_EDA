@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>MLB Data Presentation</title>
+    <title>MLB EDA</title>
     <meta charset="utf-8" />
     <meta name="author" content="Austin Stephen, Advaith Vijay, and Claire Dudley" />
-    <script src="libs/header-attrs-2.8/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="Presentation_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# MLB Data Presentation
+# MLB EDA
 ### Austin Stephen, Advaith Vijay, and Claire Dudley
 ### 6/14/2021
 
@@ -21,47 +20,61 @@ class: center, middle, inverse, title-slide
 
 
 
-class: left, top, inverse
-## First Slide
-Colors are inverted on this slide.  
-Press "p" to switch into presenter mode. In this mode you can see notes.   
-Press "c" to open a cloned view of current slide show in another window.  
-"---" is how you split content into slides
+
+
+class: left, top
+## MLB Batted Balls 
+2021 season  
+Different game conditions influence outcomes
 
 ???
-Three question marks are how you leave slide notes.
+All of our exploration can be put under the umbrella of how do different conditions 
+in the game impact the outcome. We explore this through 3 hypothesis and a clustering 
+example.
 
 ---
-class: left, top
-## Second Slide
 
-Colors are standard on this slide.  
-This is a chunk of r code.  
+## This Slide Should Explain Our Data
+
+* Every batted ball from the 2021 season 
+* 94 =&gt; 35 columns about the hits 
 
 
-```r
-print("Hello World")
-```
-
-```
-## [1] "Hello World"
-```
 
 ???
 Note for slide 2
 ---
 
-class: center, top 
-## Third Slide
+## First Hypothesis 
+
+---
+
+## Second Hypothesis
+
+---
+
+## Third Hypothesis 
+
+---
+
+## Clustering example
+
+---
+
+## R shiny link
+
+---
+## Conclusion Slide 
+
+---
+
+
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
-});
+<script>var slideshow = remark.create();
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -126,24 +139,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

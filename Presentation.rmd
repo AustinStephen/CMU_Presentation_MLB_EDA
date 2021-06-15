@@ -1,45 +1,79 @@
 ---
-title: "MLB Data Presentation"
+title: "MLB EDA"
 author: "Austin Stephen, Advaith Vijay, and Claire Dudley"
 date: "6/14/2021"
 output:
   xaringan::moon_reader:
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
+    css: xaringan-themer.css
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width = 9, fig.height=3.5, fig.retina = 3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
 ```
 
-class: left, top, inverse
-## First Slide
-Colors are inverted on this slide.  
-Press "p" to switch into presenter mode. In this mode you can see notes.   
-Press "c" to open a cloned view of current slide show in another window.  
-"---" is how you split content into slides
+```{r xaringan-themer, include=FALSE, warning=FALSE }
+library(xaringanthemer)
+style_mono_accent(base_color = "#808080",
+  white_color = "#FFFFFF",
+  background_color = "#FFFFFF")
+```
+
+class: left, top
+## MLB Batted Balls 
+2021 season  
+Different game conditions influence outcomes
 
 ???
-Three question marks are how you leave slide notes.
+All of our exploration can be put under the umbrella of how do different conditions 
+in the game impact the outcome. We explore this through 3 hypothesis and a clustering 
+example.
 
 ---
-class: left, top
-## Second Slide
 
-Colors are standard on this slide.  
-This is a chunk of r code.  
+## This Slide Should Explain Our Data
 
-```{r}
-print("Hello World")
-```
+* Every batted ball from the 2021 season 
+* 94 => 35 columns about the hits 
+
+
 
 ???
 Note for slide 2
 ---
 
-class: center, top 
-## Third Slide
+## First Hypothesis 
+
+---
+
+## Second Hypothesis
+
+---
+
+## Third Hypothesis 
+
+---
+
+## Clustering example
+
+---
+
+## R shiny link
+
+---
+## Conclusion Slide 
+
+---
+
+
+
 
