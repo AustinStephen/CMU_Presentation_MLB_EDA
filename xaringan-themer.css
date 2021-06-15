@@ -34,7 +34,7 @@
   --header-font-family-fallback: Georgia, serif;
   --code-font-family: 'Source Code Pro';
   --code-font-is-google: 1;
-  --base-font-size: 20px;
+  --base-font-size: 24px;
   --text-font-size: 1rem;
   --code-font-size: 0.9rem;
   --code-inline-font-size: 1em;
@@ -45,7 +45,7 @@
   /* Colors */
   --text-color: #272822;
   --header-color: #808080;
-  --background-color: #FFFFFF;
+  --background-color: #fff7e6;
   --link-color: #808080;
   --text-bold-color: #808080;
   --code-highlight-color: rgba(255,255,0,0.5);
@@ -56,7 +56,7 @@
   --title-slide-background-color: #808080;
   --title-slide-text-color: #FFFFFF;
   --header-background-color: #808080;
-  --header-background-text-color: #FFFFFF;
+  --header-background-text-color: #fff7e6;
   --base: #808080;
   --white: #FFFFFF;
   --black: #272822;

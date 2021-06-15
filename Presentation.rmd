@@ -1,10 +1,11 @@
 ---
-title: "MLB EDA"
-author: "Austin Stephen, Advaith Vijay, and Claire Dudley"
+title: "MLB 2021 Batted Balls EDA"
+author: "Austin, Advaith and Claire"
 date: "6/14/2021"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -25,54 +26,64 @@ knitr::opts_chunk$set(
 library(xaringanthemer)
 style_mono_accent(base_color = "#808080",
   white_color = "#FFFFFF",
-  background_color = "#FFFFFF")
+  background_color = "#fff7e6",
+  base_font_size = "24px")
 ```
 
 class: left, top
-## MLB Batted Balls 
-2021 season  
-Different game conditions influence outcomes
+## MLB Batted Balls Data
+* Exclusively 2021 season data 
+* Exploring how different game conditions influence outcomes
+* (Probably need to add more about motivation)
 
 ???
-All of our exploration can be put under the umbrella of how do different conditions 
-in the game impact the outcome. We explore this through 3 hypothesis and a clustering 
+All of our exploration can be put under the umbrella of how different conditions 
+in the game impact play outcome. We explore this through 3 hypothesis and a clustering 
 example.
 
+
 ---
 
-## This Slide Should Explain Our Data
+## The Data 
 
-* Every batted ball from the 2021 season 
-* 94 => 35 columns about the hits 
+* Every batted ball from the 2021 season  
 
+* Summaries by batter 
 
+* Summaries by pitcher 
 
 ???
-Note for slide 2
+I want it to reveal 1 at a time summary table for pitcher and batters
 ---
 
-## First Hypothesis 
+## Hit Location 
+* How does hit location influence bases taken?  
+(insert code)
+* How does batters handedness influence hit location?  
+(insert code)
+---
+
+## Bases Taken
+* How is hit distance distributed?  
+(insert code)
+
+* Bases taken as a function of hit distance?  
+(insert code)
+
+* Who is the most efficient base runner this year?  
+(insert code)
 
 ---
 
-## Second Hypothesis
-
----
-
-## Third Hypothesis 
-
+## Stadiums and hitting
+* Advaith fill in here!
 ---
 
 ## Clustering example
-
----
-
-## R shiny link
+* Claire fill in here 
 
 ---
 ## Conclusion Slide 
-
----
 
 
 
