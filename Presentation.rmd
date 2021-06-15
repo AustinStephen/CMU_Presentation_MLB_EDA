@@ -1,0 +1,45 @@
+---
+title: "MLB Data Presentation"
+author: "Austin Stephen Advaith Vijay Claire Dudley"
+date: "6/14/2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+class: left, top, inverse
+## First Slide
+Colors are inverted on this slide.  
+Press "p" to switch into presenter mode. In this mode you can see notes.   
+Press "c" to open a cloned view of current slide show in another window.  
+"---" is how you split content into slides
+
+???
+Three question marks are how you leave slide notes.
+
+---
+class: left, top
+## Second Slide
+
+Colors are standard on this slide.  
+This is a chunk of r code.  
+
+```{r}
+print("Hello World")
+```
+
+???
+Note for slide 2
+---
+
+class: center, top 
+## Third Slide
+
