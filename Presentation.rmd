@@ -151,23 +151,19 @@ better_players <- better_players %>%
 class: left, top
 ## MLB Batted Balls Data
 * Exclusively 2021 season data 
-* Excludes any outcome that is not a hit
-* Exploring different conditions after the hit influence outcomes
-* Important for understanding how the game proceeds without 
-
+* Excludes strikes and balls
+* Examining a subset of the game of baseball  
+* Exploring different conditions influence outcomes
 
 ???
-All of our exploration can be put under the umbrella of how different conditions 
-in the game impact play outcome. We explore this through 3 hypothesis and a clustering 
-example.
-
+* The title of our data set is batted balls and it is focused on only the plays
+in baseball that are hit. Aka we are not looking at balls and strikes
+* The natural direction of our exploration is how the play develops based around 
+different game conditions and this acts as the umbrealla of our exploration  
 
 ---
 
 ## The Data 
-
-* Every batted ball from the 2021 season  
-
 
 * Summaries by batter 
 
