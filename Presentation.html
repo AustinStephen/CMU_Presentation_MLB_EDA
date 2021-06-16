@@ -26,49 +26,467 @@ class: center, middle, inverse, title-slide
 
 class: left, top
 ## MLB Batted Balls Data
-* Exclusively 2021 season data 
-* Excludes any outcome that is not a hit
-* Exploring different conditions after the hit influence outcomes
-* Important for understanding how the game proceeds without 
-
-
-???
-All of our exploration can be put under the umbrella of how different conditions 
-in the game impact play outcome. We explore this through 3 hypothesis and a clustering 
-example.
-
-
----
-
-## The Data 
-
-* Every batted ball from the 2021 season  
-
-
-* Summaries by batter 
-
-* Summaries by pitcher 
+* &lt;p&gt; Exclusively 2021 season data &lt;/p&gt;
+* &lt;p&gt; Excludes strikes and balls &lt;/p&gt;
+* &lt;p&gt; Examining a subset of the game of baseball &lt;/p&gt;
+* &lt;p&gt; Exploring different conditions influence outcomes &lt;/p&gt;
 
 ???
-I want it to reveal 1 at a time summary table for pitcher and batters
+* The title of our data set is batted balls and it is focused on only the plays
+in baseball that are hit. Aka we are not looking at balls and strikes  
+* The natural direction of our exploration is how the play develops based around 
+different game conditions and this acts as the umbrella of our exploration    
+* Notably this subset of the game precludes any analysis on batting or pitching 
+efficiency and rather directs us to examine post hit features of the game
+
 ---
 
-## Hit Location 
-* How does hit location influence bases taken?  
-(insert code)
-* How does batters handedness influence hit location?  
-(insert code)
+## Hit Location (hyp. 1)
+How does hit location influence bases taken?  
+
+--
+  
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+???
+You can tell hit location really plays an impact on where runners end up.
+
+---
+## Hit Location (hyp. 1)
+
+How does batters handedness influence hit location?
+
+--
+  
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
+
+???
+* Look at how the handedness of a hitter impacts not just where the ball is placed 
+but depending on the type of hit it can flip. 
+
+* Now we know hit location is an important factor in running triple. And we know
+left handed hitters are more prone to hit a fly ball into right field. So the
+next natural question is are left handed hitters more likely to hit triples.
+And sure enough in 2021 .648 percent of left handed hits were triples and .52 
+percent of right handed hits were triples.
+
 ---
 
-## Bases Taken
-* How is hit distance distributed?  
-(insert code)
 
-* Bases taken as a function of hit distance?  
-(insert code)
+## Bases Taken (hyp. 2)
+With what frequency are different bases taken?
 
-* Who is the most efficient base runner this year?  
-(insert code)
+--
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+
+???
+Just discuss frequency
+---
+## Bases Taken (hyp. 2)
+Is the base taken a function of hit distance?
+
+--
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
+
+???
+Yes it is. A few things to note this removes plays classified as errors because we
+are interested in what can be expected under normal circumstances.
+
+---
+## Bases Taken (hyp. 2)
+Who is the most efficient base runner this year?   
+
+--
+
+<div id="jvlajaqiuz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#jvlajaqiuz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 5px;
+  border-top-color: darkgrey;
+  border-right-style: solid;
+  border-right-width: 5px;
+  border-right-color: darkgrey;
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+  border-bottom-color: darkgrey;
+  border-left-style: solid;
+  border-left-width: 5px;
+  border-left-color: darkgrey;
+}
+
+#jvlajaqiuz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jvlajaqiuz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jvlajaqiuz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jvlajaqiuz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jvlajaqiuz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jvlajaqiuz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jvlajaqiuz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jvlajaqiuz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jvlajaqiuz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jvlajaqiuz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jvlajaqiuz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jvlajaqiuz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jvlajaqiuz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#jvlajaqiuz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvlajaqiuz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvlajaqiuz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jvlajaqiuz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jvlajaqiuz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jvlajaqiuz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jvlajaqiuz .gt_left {
+  text-align: left;
+}
+
+#jvlajaqiuz .gt_center {
+  text-align: center;
+}
+
+#jvlajaqiuz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jvlajaqiuz .gt_font_normal {
+  font-weight: normal;
+}
+
+#jvlajaqiuz .gt_font_bold {
+  font-weight: bold;
+}
+
+#jvlajaqiuz .gt_font_italic {
+  font-style: italic;
+}
+
+#jvlajaqiuz .gt_super {
+  font-size: 65%;
+}
+
+#jvlajaqiuz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style><strong>Best Base Runners in 2021</strong></th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Player Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Bases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Hit Distance</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Distance Per Base Taken</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Wisdom, Patrick</td>
+<td class="gt_row gt_right">42</td>
+<td class="gt_row gt_right">6468</td>
+<td class="gt_row gt_right">154.0000</td></tr>
+    <tr><td class="gt_row gt_left">Tatis Jr., Fernando</td>
+<td class="gt_row gt_right">100</td>
+<td class="gt_row gt_right">17898</td>
+<td class="gt_row gt_right">178.9800</td></tr>
+    <tr><td class="gt_row gt_left">Reyes, Franmil</td>
+<td class="gt_row gt_right">75</td>
+<td class="gt_row gt_right">13667</td>
+<td class="gt_row gt_right">182.2267</td></tr>
+    <tr><td class="gt_row gt_left">Trout, Mike</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">12689</td>
+<td class="gt_row gt_right">183.8986</td></tr>
+    <tr><td class="gt_row gt_left">Zimmerman, Ryan</td>
+<td class="gt_row gt_right">70</td>
+<td class="gt_row gt_right">13102</td>
+<td class="gt_row gt_right">187.1714</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">data courtesy of baseballsavant.com</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+???
+Filtered for hitters that have at least 30 bases and hit for a total of at 
+least 200 ft on the season to remove any runners that had a few lucky runs. 
+One stood out above the rest.
 
 ---
 
@@ -77,7 +495,12 @@ I want it to reveal 1 at a time summary table for pitcher and batters
 ---
 
 ## Clustering example
-Claire
+* 
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+
+
 
 ---
 ## Conclusion Slide 

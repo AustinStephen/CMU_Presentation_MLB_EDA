@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
   fig.width = 9, fig.height=3.5, fig.retina = 3,
   out.width = "100%",
   cache = FALSE,
-  echo = TRUE,
+  echo = FALSE,
   message = FALSE, 
   warning = FALSE,
   fig.show = TRUE,
@@ -31,10 +31,11 @@ library(xaringanthemer)
 style_mono_accent(base_color = "#808080",
   white_color = "#FFFFFF",
   background_color = "#fff7e6",
-  base_font_size = "24px")
+  base_font_size = "24px"
+  )
 ```
 
-```{r inlcude=FALSE, warning=FALSE, echo=FALSE, cache=TRUE}
+```{r inlcude=FALSE, warning=FALSE, cache=TRUE}
 
 # Setting up all of the data used below 
 # read in the base data
@@ -76,14 +77,6 @@ mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>%
               TRUE ~ 0)
   )
 
-## Current top 5
-subset_top_5_hr <- mlb_batted_balls_2021 %>% 
-      filter(player_name %in% c("Haniger, Mitch",
-                            "Winker, Jesse",
-                            "Acuña Jr., Ronald", 
-                            "García, Adolis", 
-                            "Guerrero Jr., Vladimir"))
-mlb_batted_balls_2021 <- as.data.frame(mlb_batted_balls_2021)
   
 
 # More broad pitching categories 
@@ -107,31 +100,6 @@ consolidated_pitch_types <- mlb_batted_balls_2021 %>%
             TRUE ~ pitch_type
           )) 
 
-## Summary stats by hitter
-summary_stats_by_hitter <- mlb_batted_balls_2021 %>% 
-  group_by(player_name) %>% 
-  summarise(total_hr = sum(events == "home_run"), 
-            total_triples = sum(events == "triple"),
-            total_doubles= sum(events == "double"),
-            total_singles = sum(events == "single"),
-            total_bases_taken = sum(bases_covered),
-            total_hit_distance = sum(hit_distance_sc),
-            total_hits = sum(batter == batter)
-            )
-
-## Summary stats by pitcher
-summary_stats_by_pitcher <- mlb_batted_balls_2021 %>% 
-  group_by(pitcher) %>% 
-  summarise(total_hr = sum(events == "home_run"), 
-            total_triples = sum(events == "triple"),
-            total_doubles= sum(events == "double"),
-            total_singles = sum(events == "single"),
-            total_bases_given = sum(bases_covered),
-            total_hit_distance = sum(hit_distance_sc),
-            average_release_speed = mean(release_speed),
-            total_pitches_hit = sum(pitcher == pitcher)
-            )
-
 # Setting up clustering data set
 
 # selecting only batters with over 15 at bats
@@ -142,53 +110,164 @@ better_players <- mlb_batted_balls_2021 %>%
 better_players <- better_players %>%
   filter(atbats > 15)
 
-# scatterplot of launch angle versus hit distance
-
-
+## Summary stats by hitter
+summary_stats_by_hitter <- mlb_batted_balls_2021 %>% 
+  group_by(player_name) %>% 
+  summarise(total_hr = sum(events == "home_run"), 
+            total_triples = sum(events == "triple"),
+            total_doubles= sum(events == "double"),
+            total_singles = sum(events == "single"),
+            total_bases_taken = sum(bases_covered),
+            total_hit_distance = sum(hit_distance_sc),
+            total_hits = sum(batter == batter)
+        )
 
 ```
 
 class: left, top
 ## MLB Batted Balls Data
-* Exclusively 2021 season data 
-* Excludes strikes and balls
-* Examining a subset of the game of baseball  
-* Exploring different conditions influence outcomes
+* <p> Exclusively 2021 season data </p>
+* <p> Excludes strikes and balls </p>
+* <p> Examining a subset of the game of baseball </p>
+* <p> Exploring different conditions influence outcomes </p>
 
 ???
 * The title of our data set is batted balls and it is focused on only the plays
-in baseball that are hit. Aka we are not looking at balls and strikes
+in baseball that are hit. Aka we are not looking at balls and strikes  
 * The natural direction of our exploration is how the play develops based around 
-different game conditions and this acts as the umbrealla of our exploration  
+different game conditions and this acts as the umbrella of our exploration    
+* Notably this subset of the game precludes any analysis on batting or pitching 
+efficiency and rather directs us to examine post hit features of the game
 
 ---
 
-## The Data 
+## Hit Location (hyp. 1)
+How does hit location influence bases taken?  
 
-* Summaries by batter 
+--
+  
+```{r,  warning=FALSE}
+mlb_batted_balls_2021 %>%
+  filter(events %in% c("single","double","triple","home_run")) %>%
+  ggplot(aes(x=hc_x, y= -1 *hc_y))+
+  geom_point(size = .25, alpha= .75, color = "#c48000")+
+  theme_bw()+ 
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x = element_blank())+
+  facet_wrap(~bases_covered)+
+  labs( x = "", y= "")
 
-* Summaries by pitcher 
+```
+???
+You can tell hit location really plays an impact on where runners end up.
+
+---
+## Hit Location (hyp. 1)
+
+How does batters handedness influence hit location?
+
+--
+  
+```{r warning=FALSE}
+mlb_batted_balls_2021 %>% 
+  filter(!is.na(bb_type)) %>%
+  mutate(bb_type = case_when(
+                  bb_type == "fly_ball" ~ "fly ball",
+                  bb_type == "ground_ball" ~ "ground ball",
+                  bb_type == "line_drive" ~ " line drive",
+                  TRUE ~ bb_type
+                  )) %>%
+  ggplot(aes(x=hc_x, y= -1 *hc_y))+
+  geom_point(size = .75, alpha= .10, aes(color=stand))+
+  theme_bw()+ 
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x = element_blank())+
+  facet_wrap(~bb_type)+
+  labs(x = "", y= "")+
+  scale_color_manual(values=c("#003063", "#c48000"))
+```
 
 ???
-I want it to reveal 1 at a time summary table for pitcher and batters
+* Look at how the handedness of a hitter impacts not just where the ball is placed 
+but depending on the type of hit it can flip. 
+
+* Now we know hit location is an important factor in running triple. And we know
+left handed hitters are more prone to hit a fly ball into right field. So the
+next natural question is are left handed hitters more likely to hit triples.
+And sure enough in 2021 .648 percent of left handed hits were triples and .52 
+percent of right handed hits were triples.
+
 ---
 
-## Hit Location 
-* How does hit location influence bases taken?  
-(insert code)
-* How does batters handedness influence hit location?  
-(insert code)
+
+## Bases Taken (hyp. 2)
+With what frequency are different bases taken?
+
+--
+
+```{r}
+mlb_batted_balls_2021 %>%
+  filter(events %in% c("single","double","triple","home_run")) %>%
+  ggplot(aes(x=bases_covered))+
+  geom_bar(mapping = )+
+  theme_bw() +
+  labs(x = "# of bases run")
+```
+
+???
+Just discuss frequency
 ---
+## Bases Taken (hyp. 2)
+Is the base taken a function of hit distance?
 
-## Bases Taken
-* How is hit distance distributed?  
-(insert code)
+--
 
-* Bases taken as a function of hit distance?  
-(insert code)
+```{r}
+mlb_batted_balls_2021 %>%
+  filter(events %in% c("single","double","triple","home_run")) %>%
+  ggplot(aes(x=bases_covered, y=hit_distance_sc))+
+  geom_point(alpha = .02, size = 1.5)+
+  theme_bw() +
+  labs( x= "# of bases run", y= "distance of hit (ft)")
+```
 
-* Who is the most efficient base runner this year?  
-(insert code)
+???
+Yes it is. A few things to note this removes plays classified as errors because we
+are interested in what can be expected under normal circumstances.
+
+---
+## Bases Taken (hyp. 2)
+Who is the most efficient base runner this year?   
+
+--
+
+```{r out.height="60%"}
+summary_stats_by_hitter %>%
+  filter(total_bases_taken > 30 & total_hit_distance > 500) %>%
+  mutate(ft_hit_per_base = total_hit_distance/total_bases_taken) %>%
+  arrange(ft_hit_per_base) %>%
+  select(player_name,total_bases_taken, total_hit_distance, ft_hit_per_base) %>%
+  rename("Player Name" = player_name,  
+         "Distance Per Base Taken" = ft_hit_per_base, 
+         "Hit Distance" = total_hit_distance,
+         "Bases" = total_bases_taken) %>%
+  slice(1:5) %>%
+  gt() %>%
+  tab_header(
+    title = md("**Best Base Runners in 2021**")
+  ) %>%
+  tab_source_note(md("data courtesy of baseballsavant.com")) %>%
+  opt_table_outline( style = "solid", width = px(5), color = "darkgrey")
+```
+
+???
+Filtered for hitters that have at least 30 bases and hit for a total of at 
+least 200 ft on the season to remove any runners that had a few lucky runs. 
+One stood out above the rest.
 
 ---
 
