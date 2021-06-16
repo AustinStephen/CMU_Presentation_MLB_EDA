@@ -183,7 +183,7 @@ I want it to reveal 1 at a time summary table for pitcher and batters
 ---
 
 ## Clustering example
-* Claire fill in here 
+
 
 ---
 ## Conclusion Slide 
