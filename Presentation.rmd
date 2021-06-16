@@ -135,8 +135,10 @@ summary_stats_by_pitcher <- mlb_batted_balls_2021 %>%
 class: left, top
 ## MLB Batted Balls Data
 * Exclusively 2021 season data 
-* Exploring how different game conditions influence outcomes
-* (Probably need to add more about motivation)
+* Excludes any outcome that is not a hit
+* Exploring different conditions after the hit influence outcomes
+* Important for understanding how the game proceeds without 
+
 
 ???
 All of our exploration can be put under the umbrella of how different conditions 
