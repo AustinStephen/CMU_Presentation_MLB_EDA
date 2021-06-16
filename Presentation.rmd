@@ -9,6 +9,10 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
+library(baseballr)
+library(gt)
+library(evaluate)
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   fig.width = 9, fig.height=3.5, fig.retina = 3,
@@ -30,6 +34,104 @@ style_mono_accent(base_color = "#808080",
   base_font_size = "24px")
 ```
 
+```{r inlcude=FALSE, warning=FALSE, echo=FALSE, cache=TRUE}
+
+# Setting up all of the data used below 
+# read in the base data
+mlb_batted_balls_2021 <- read.csv("./data/2021_current_data.csv")
+
+# filtering for data points of interest
+mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>%
+  # Only select columns regarding the batted ball with discrete pitch type
+  # information (except for the speed) for now: 
+  dplyr::select(# Batter info:
+                player_name, batter, stand, 
+                # Batted ball info:
+                events, hc_x, hc_y, hit_distance_sc, launch_speed, launch_angle,
+                hit_location, bb_type, barrel,
+                # Pitch info:
+                pitch_type, release_speed, effective_speed, pitcher,
+                # Shift info:
+                if_fielding_alignment, of_fielding_alignment,
+                # Game level context:
+                game_date, balls, strikes, outs_when_up, on_1b, on_2b, on_3b,
+                inning, inning_topbot, home_score, away_score, post_home_score,
+                post_away_score, home_team, away_team,
+                # Description of play:
+                des)
+
+## Removing data points where hit distance or launch angle are NA
+mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>% drop_na(launch_angle)
+mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>% drop_na(hit_distance_sc)
+
+
+## Important subsets of data for reuse in various plots
+
+mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>%
+  mutate(bases_covered = case_when(
+              events == "single" ~ 1,
+              events == "double" ~ 2,
+              events == "triple" ~ 3,
+              events == "home_run" ~ 4,
+              TRUE ~ 0)
+  )
+
+## Current top 5
+subset_top_5_hr <- mlb_batted_balls_2021 %>% 
+      filter(player_name %in% c("Haniger, Mitch",
+                            "Winker, Jesse",
+                            "Acuña Jr., Ronald", 
+                            "García, Adolis", 
+                            "Guerrero Jr., Vladimir"))
+
+## More broad pitching categories 
+consolidated_pitch_types <- mlb_batted_balls_2021 %>% 
+  mutate(pitch_type = case_when(
+            pitch_type == "FA" ~ "F",
+            pitch_type == "FF" ~ "F",
+            pitch_type == "FT" ~ "F",
+            pitch_type == "FC" ~ "F",
+            pitch_type == "FS" ~ "F",
+            pitch_type == "SI" ~ "F",
+            pitch_type == "FO" ~ "F",
+            pitch_type == "CU" ~ "BB",
+            pitch_type == "CS" ~ "BB",
+            pitch_type == "SC" ~ "BB",
+            pitch_type == "KC" ~ "BB",
+            pitch_type == "SL" ~ "BB",
+            pitch_type == "KN" ~ "CH",
+            pitch_type == "EP" ~ "CH",
+            TRUE ~ pitch_type
+          )) 
+
+## Summary stats by hitter
+summary_stats_by_hitter <- mlb_batted_balls_2021 %>% 
+  group_by(player_name) %>% 
+  summarise(total_hr = sum(events == "home_run"), 
+            total_triples = sum(events == "triple"),
+            total_doubles= sum(events == "double"),
+            total_singles = sum(events == "single"),
+            total_bases_taken = sum(bases_covered),
+            total_hit_distance = sum(hit_distance_sc),
+            total_hits = sum(batter == batter)
+            )
+
+## Summary stats by pitcher
+summary_stats_by_pitcher <- mlb_batted_balls_2021 %>% 
+  group_by(pitcher) %>% 
+  summarise(total_hr = sum(events == "home_run"), 
+            total_triples = sum(events == "triple"),
+            total_doubles= sum(events == "double"),
+            total_singles = sum(events == "single"),
+            total_bases_given = sum(bases_covered),
+            total_hit_distance = sum(hit_distance_sc),
+            average_release_speed = mean(release_speed),
+            total_pitches_hit = sum(pitcher == pitcher)
+            )
+
+
+```
+
 class: left, top
 ## MLB Batted Balls Data
 * Exclusively 2021 season data 
@@ -47,6 +149,7 @@ example.
 ## The Data 
 
 * Every batted ball from the 2021 season  
+
 
 * Summaries by batter 
 
