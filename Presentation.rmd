@@ -417,7 +417,7 @@ How Does Variability In Baseball Stadiums Impact Batting Statistics?
 
 ---
 
-## Stadium Variability (hyp. 3)
+## Investigating Correlation (hyp. 3)
 
 ```{r}
 v3 <- readRDS("adhvaith_table.rds")
