@@ -4,7 +4,6 @@
     <title>MLB 2021 Batted Balls EDA</title>
     <meta charset="utf-8" />
     <meta name="author" content="Austin, Advaith and Claire" />
-    <script src="Presentation_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -494,20 +493,46 @@ One stood out above the rest.
 * Advaith fill in here!
 ---
 
-## Clustering example
-* 
-&lt;img src="Presentation_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
 
-&lt;img src="Presentation_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
 
+## Clustering 
+* What is the ideal launch angle for a batted ball?
+
+```r
+better_players %&gt;%
+  ggplot(aes(x = launch_angle,
+             y = hit_distance_sc)) + 
+  geom_point() +
+  theme_minimal()
+```
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+---
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
+
+---
+
+## Clustering
+
+```r
+better_players %&gt;%
+   filter(effective_speed &gt; 60,
+          events %in% (c("single", "triple", "double", "home_run"))) %&gt;%
+  ggplot(aes(x = launch_angle,
+             y = hit_distance_sc,
+             color = events)) + 
+  geom_point() +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
+
+&lt;img src="Presentation_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
+---
 
 
 ---
-## Conclusion Slide 
-
-
-
-
+## Conclusion Slide
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
