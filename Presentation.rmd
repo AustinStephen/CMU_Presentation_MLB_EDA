@@ -403,12 +403,6 @@ better_players %>%
 ## R Shiny Demo (hyp. 3)
 How Does Variability In Baseball Stadiums Impact Batting Statistics?
 
-<!-- - Variability in MLB Baseball Stadium stems from **stadium design and stadium location** -->
-
-<!-- - One school of thought suggests that the height of a stadium's outfield wall has some affect on batting statistics (i.e. Fenway Park's notorious "Green Monster") -->
-
-<!-- - Another school of thought suggsets that stadiums at a higher altitude offer conditions for faster balls, and longer hit distances  -->
-
 .pull-left[
 ![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/Green_Monster.jpg)
 ]
@@ -417,6 +411,11 @@ How Does Variability In Baseball Stadiums Impact Batting Statistics?
 ![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/elevationv2.jpg)
 ]
 
+???
+- Variability in MLB Baseball Stadium stems from **stadium design and stadium location**
+- One school of thought suggests that the height of a stadium's outfield wall has some affect on batting statistics (i.e. Fenway Park's notorious "Green Monster")
+- Another school of thought suggsets that stadiums at a higher altitude offer conditions for faster balls, and longer hit distances
+- Home Game Data for Bluejays removed since they played their 2021 season in a florida baseball stadium
 ---
 
 ## Investigating Correlation (hyp. 3)
