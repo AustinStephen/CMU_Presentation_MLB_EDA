@@ -276,8 +276,8 @@ One stood out above the rest.
 ---
 
 
-## Clustering 
-What is the ideal launch angle for a batted ball?
+## What is the Ideal Launch Angle for a Batted Ball? 
+
 ```{r echo = FALSE}
 better_players %>%
   ggplot(aes(x = launch_angle,
@@ -288,7 +288,8 @@ better_players %>%
        y = "Hit Distance")
 ```
 
-??? One interesting relationship we looked at was the affect of the launch angle of the bat hitting the ball on the hit distance. This plot was filtered for batters with more than 15 at bats, so batters who played more games. There is clearly a desirable launch angle of around 30-50 degrees that is associated with a farther hit distance. We wanted to look into these two variables as a clustering example, as hypothetically it would make sense if certain hit types as well as certain events (like singles, doubles, triples, outs) might be in different clusters of this relationship.
+??? 
+- One interesting relationship we looked at was the affect of the launch angle of the bat hitting the ball on the hit distance. This plot was filtered for batters with more than 15 at bats, so batters who played more games. There is clearly a desirable launch angle of around 30-50 degrees that is associated with a farther hit distance. We wanted to look into these two variables as a clustering example, as hypothetically it would make sense if certain hit types as well as certain events (like singles, doubles, triples, outs) might be in different clusters of this relationship.
 ---
 
 ## Clustering 
