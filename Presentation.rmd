@@ -1,6 +1,6 @@
 ---
 title: "MLB 2021 Batted Balls EDA"
-author: "Austin, Advaith and Claire"
+author: "Austin Stephen, Adhvaith Vijay and Claire Dudley"
 date: "6/14/2021"
 output:
   xaringan::moon_reader:
@@ -273,12 +273,9 @@ One stood out above the rest.
 
 ---
 
-## Stadiums and hitting
-* Advaith fill in here!
----
 
 ## Clustering 
-* What is the ideal launch angle for a batted ball?
+What is the ideal launch angle for a batted ball?
 ```{r echo = FALSE}
 better_players %>%
   ggplot(aes(x = launch_angle,
@@ -290,6 +287,7 @@ better_players %>%
 ```
 ---
 
+## Clustering 
 ```{r echo = FALSE}
 library(cluster)
 complete_df <- na.omit(better_players)
@@ -318,52 +316,54 @@ complete_df %>%
        y = "Hit Distance",
        legend = "Balls Batted Clusters")
 ```
----
+
 
 ```{r echo = FALSE}
-mlb_kmeanspp <-
-  kcca(dplyr::select(complete_df, launch_angle, hit_distance_sc), 
-       k = 3, control = list(initcent = "kmeanspp"))
-
-complete_df %>%
-  mutate(ball_clusters = 
-           as.factor(mlb_kmeanspp@cluster)) %>%
-  ggplot(aes(x = launch_angle, y = hit_distance_sc,
-             color = ball_clusters)) +
-  geom_point(alpha = 0.75) + 
-  theme_bw() +
-  ggthemes::scale_color_colorblind()
-
-ball_dist <- 
-  dist(dplyr::select(complete_df, launch_angle, hit_distance_sc))
-ball_dist_matrix <- as.matrix(ball_dist)
-rownames(ball_dist_matrix) <- complete_df$batter
-colnames(ball_dist_matrix) <- complete_df$batter
-ball_dist_matrix[1:3, 1:3]
-
-long_dist_matrix <- 
-  as_tibble(ball_dist_matrix) %>%
-  mutate(batter1 = rownames(ball_dist_matrix)) %>%
-  pivot_longer(cols = -batter1,
-               names_to = "batter2", values_to = "distance")
-
-mlb_complete_hclust <-
-  hclust(ball_dist, method = "complete")
-
-complete_df %>%
-  mutate(ball_clusters = 
-           as.factor(cutree(mlb_complete_hclust, k = 4))) %>%
-  ggplot(aes(x = launch_angle, y = hit_distance_sc,
-             color = ball_clusters)) +
-  geom_point(alpha = 0.75) + 
-  theme_bw() + ggthemes::scale_color_colorblind() +
-  theme(legend.position = "bottom") + 
-  labs(x = "Launch Angle",
-       y = "Hit Distance",
-       legend = "Batted Ball Clusters")
+# mlb_kmeanspp <-
+#   kcca(dplyr::select(complete_df, launch_angle, hit_distance_sc), 
+#        k = 3, control = list(initcent = "kmeanspp"))
+# 
+# complete_df %>%
+#   mutate(ball_clusters = 
+#            as.factor(mlb_kmeanspp@cluster)) %>%
+#   ggplot(aes(x = launch_angle, y = hit_distance_sc,
+#              color = ball_clusters)) +
+#   geom_point(alpha = 0.75) + 
+#   theme_bw() +
+#   ggthemes::scale_color_colorblind()
+# 
+# ball_dist <- 
+#   dist(dplyr::select(complete_df, launch_angle, hit_distance_sc))
+# ball_dist_matrix <- as.matrix(ball_dist)
+# rownames(ball_dist_matrix) <- complete_df$batter
+# colnames(ball_dist_matrix) <- complete_df$batter
+# ball_dist_matrix[1:3, 1:3]
+# 
+# long_dist_matrix <- 
+#   as_tibble(ball_dist_matrix) %>%
+#   mutate(batter1 = rownames(ball_dist_matrix)) %>%
+#   pivot_longer(cols = -batter1,
+#                names_to = "batter2", values_to = "distance")
+# 
+# mlb_complete_hclust <-
+#   hclust(ball_dist, method = "complete")
+# 
+# complete_df %>%
+#   mutate(ball_clusters = 
+#            as.factor(cutree(mlb_complete_hclust, k = 4))) %>%
+#   ggplot(aes(x = launch_angle, y = hit_distance_sc,
+#              color = ball_clusters)) +
+#   geom_point(alpha = 0.75) + 
+#   theme_bw() + ggthemes::scale_color_colorblind() +
+#   theme(legend.position = "bottom") + 
+#   labs(x = "Launch Angle",
+#        y = "Hit Distance",
+#        legend = "Batted Ball Clusters")
 ```
 
+---
 
+## Clustering
 ```{r echo = FALSE}
 better_players %>%
    filter(effective_speed > 60) %>%
@@ -398,8 +398,40 @@ better_players %>%
 ---
 
 
+## R Shiny Demo (hyp. 3)
+How Does Variability In Baseball Stadiums Impact Batting Statistics?
+
+<!-- - Variability in MLB Baseball Stadium stems from **stadium design and stadium location** -->
+
+<!-- - One school of thought suggests that the height of a stadium's outfield wall has some affect on batting statistics (i.e. Fenway Park's notorious "Green Monster") -->
+
+<!-- - Another school of thought suggsets that stadiums at a higher altitude offer conditions for faster balls, and longer hit distances  -->
+
+.pull-left[
+![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/Green_Monster.jpg)
+]
+
+.pull-right[
+![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/elevationv2.jpg)
+]
+
 ---
-## Conclusion Slide 
+
+## Stadium Variability (hyp. 3)
+
+```{r}
+v3 <- readRDS("adhvaith_table.rds")
+v3 %>%
+gt() %>%
+  tab_header(
+    title = md("**Most Correlated Batting and Stadium Statistics**")
+  ) %>%
+  tab_source_note(md("data courtesy of baseballsavant.com")) %>%
+  opt_table_outline( style = "solid", width = px(5), color = "darkgrey")
+```
+---
+
+##Conclusion
 
 
 

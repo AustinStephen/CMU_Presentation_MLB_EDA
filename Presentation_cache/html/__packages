@@ -12,3 +12,14 @@ baseballr
 gt
 evaluate
 xaringanthemer
+shiny
+GeomMLBStadiums
+data.table
+toOrdinal
+cluster
+lattice
+modeltools
+flexclust
+survival
+Formula
+Hmisc
