@@ -14,6 +14,7 @@ library(baseballr)
 library(gt)
 library(evaluate)
 library(cluster)
+library(GeomMLBStadiums)
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 
@@ -433,6 +434,15 @@ gt() %>%
 
 ##Conclusion
 
+* Hit location is not uniformly distributed
+  + Nonobvious player features influence hit location outcomes  
+<p> </p>  
+
+* Bases run is a function of hit distance 
+  + Some batters are more efficient base runners  
+<p> </p>
+* <p> Different stadiums affect game outcomes </p>
+* <p> Type of hit may be a feature of the data </p>
 
 
 
