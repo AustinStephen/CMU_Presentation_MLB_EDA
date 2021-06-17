@@ -287,12 +287,16 @@ better_players %>%
   labs(x = "Launch Angle",
        y = "Hit Distance")
 ```
+
+??? One interesting relationship we looked at was the affect of the launch angle of the bat hitting the ball on the hit distance. This plot was filtered for batters with more than 15 at bats, so batters who played more games. There is clearly a desirable launch angle of around 30-50 degrees that is associated with a farther hit distance. We wanted to look into these two variables as a clustering example, as hypothetically it would make sense if certain hit types as well as certain events (like singles, doubles, triples, outs) might be in different clusters of this relationship.
 ---
 
 ## Clustering 
+Clustering using scaled k-means
 ```{r echo = FALSE}
 library(cluster)
-complete_df <- na.omit(better_players)
+# complete_df <- na.omit(better_players)
+complete_df <- better_players
 num_cols <- unlist(lapply(complete_df, is.numeric))
 complete_df <- complete_df[ , num_cols]
 complete_df <- scale(complete_df)
@@ -316,8 +320,12 @@ complete_df %>%
   ggthemes::scale_color_colorblind() +
   labs(x = "Launch Angle",
        y = "Hit Distance",
-       legend = "Balls Batted Clusters")
+       color = "Balls Batted Clusters")
 ```
+???
+I used k-means clustering because we were only looking at two variables and the scatterplot of launch angle and hit distance did not have a lot of outliers. Because launch angle and hit distance are measured using different variables, degrees and feet, I scaled the variables to make their variances more similar, as unequal variances can lead to putting more weight on variables with smaller variance. Clusters would've just been separated along hit distance, as this variable has a higher variance than launch angle.
+
+Using k = 4 here after using an elbow plot, which is a naiive method for choosing k but the 4 groups here seem to make logical sense. There is a group with a very low distance and launch angle, a group with a slightly higher launch angle and a growing hit distance, a group with a launch angle from around 30-50 degrees and the highest distance (this would be "optimal") and a group with a higher launch angle and a similar hit distance to the second group
 
 
 ```{r echo = FALSE}
@@ -365,7 +373,7 @@ complete_df %>%
 
 ---
 
-## Clustering
+## Grouping the Relationship Between Launch Angle and Hit Distance by Batted Ball Type
 ```{r echo = FALSE}
 better_players %>%
    filter(effective_speed > 60) %>%
@@ -373,16 +381,17 @@ better_players %>%
              y = hit_distance_sc,
              color = bb_type)) + 
   geom_point() +
-  ggthemes::scale_color_colorblind() +
+  ggthemes::scale_color_colorblind(labels = c("Fly Ball", "Ground Ball", "Line Drive", "Popup")) +
   theme_minimal() + 
   labs(x = "Launch Angle",
        y = "Hit Distance",
-       legend = "Batted Ball Type")
+       color = "Batted Ball Type")
 ```
-
+???
+- While these groups aren't the same as the clusters, it makes sense that coloring the first scatterplot shown by batted ball type shows that different hits are associated with different launch angle and hit distance pairings. Looking at this graph you can see the clusters from the previous graph would definitely be similar in terms of batted ball types.
 ---
 
-## Clustering
+## Where do Desirable Events Lie on the Relationship Between Launch Angle and Hit Distance?
 ```{r echo = FALSE}
 better_players %>%
    filter(effective_speed > 60,
@@ -397,6 +406,8 @@ better_players %>%
        y = "Hit Distance",
        legend = "Type of Batted Ball")
 ```
+???
+- So I then wanted to compare the clusters to certain event types, and here are displayed the events single, double, triple, and home run. Again, while the these groupings don't exactly line up with the clusters , there would definitely be similarity in event types within clusters. 
 ---
 
 
