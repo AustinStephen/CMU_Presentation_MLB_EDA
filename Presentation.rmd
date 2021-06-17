@@ -182,7 +182,7 @@ mlb_batted_balls_2021 %>%
                   bb_type == "line_drive" ~ " line drive",
                   TRUE ~ bb_type
                   )) %>%
-  ggplot(aes(x=hc_x, y= -1 *hc_y))+
+  ggplot(aes(x=hc_x, y= -1 *hc_y), alpha=1)+
   geom_point(size = .75, alpha= .10, aes(color=stand))+
   theme_bw()+ 
   theme(axis.text.y=element_blank(),
@@ -191,7 +191,8 @@ mlb_batted_balls_2021 %>%
         axis.ticks.x = element_blank())+
   facet_wrap(~bb_type)+
   labs(x = "", y= "")+
-  scale_color_manual(values=c("#003063", "#c48000"))
+  scale_color_manual(values=c("#003063", "#c48000"))+
+  guides(colour = guide_legend(override.aes = list(alpha = 1, size=4)))
 ```
 
 ???
