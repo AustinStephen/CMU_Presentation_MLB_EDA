@@ -13,16 +13,19 @@ library(tidyverse)
 library(baseballr)
 library(gt)
 library(evaluate)
+library(cluster)
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
-  fig.width = 9, fig.height=3.5, fig.retina = 3,
-  out.width = "100%",
-  cache = FALSE,
-  echo = TRUE,
-  message = FALSE, 
-  warning = FALSE,
-  fig.show = TRUE,
-  hiline = TRUE
+	echo = TRUE,
+	fig.height = 3.5,
+	fig.retina = 3,
+	fig.show = TRUE,
+	fig.width = 9,
+	message = FALSE,
+	warning = FALSE,
+	cache = FALSE,
+	hiline = TRUE,
+	out.width = "100%"
 )
 ```
 
@@ -200,29 +203,43 @@ I want it to reveal 1 at a time summary table for pitcher and batters
 * Advaith fill in here!
 ---
 
-## Clustering example
-* 
-```{r}
+## Clustering 
+* What is the ideal launch angle for a batted ball?
+```{r echo = FALSE}
+better_players %>%
+  ggplot(aes(x = launch_angle,
+             y = hit_distance_sc)) + 
+  geom_point() +
+  theme_minimal()
+```
+---
+
+```{r echo = FALSE}
 better_players %>%
    filter(effective_speed > 60) %>%
   ggplot(aes(x = launch_angle,
              y = hit_distance_sc,
-             color = events)) + 
+             color = bb_type)) + 
   geom_point() +
+  ggthemes::scale_color_colorblind() +
   theme_minimal()
 ```
 
-```{r}
+---
+
+## Clustering
+```{r echo = FALSE}
 better_players %>%
    filter(effective_speed > 60,
           events %in% (c("single", "triple", "double", "home_run"))) %>%
   ggplot(aes(x = launch_angle,
              y = hit_distance_sc,
-             color = bb_type)) + 
+             color = events)) + 
   geom_point() +
+  ggthemes::scale_color_colorblind() +
   theme_minimal()
 ```
-
+---
 
 
 ---
