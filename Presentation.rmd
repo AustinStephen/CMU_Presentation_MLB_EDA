@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r xaringan-themer, include=FALSE, warning=FALSE }
+```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
 style_mono_accent(base_color = "#808080",
   white_color = "#FFFFFF",
@@ -42,7 +42,7 @@ style_mono_accent(base_color = "#808080",
 
 # Setting up all of the data used below 
 # read in the base data
-mlb_batted_balls_2021 <- read.csv("./data/2021_current_data.csv")
+mlb_batted_balls_2021 <- read.csv("data/2021_current_data.csv")
 
 # filtering for data points of interest
 mlb_batted_balls_2021 <- mlb_batted_balls_2021 %>%
