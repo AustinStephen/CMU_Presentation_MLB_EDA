@@ -38,7 +38,7 @@ style_mono_accent(base_color = "#808080",
   )
 ```
 
-```{r inlcude=FALSE, warning=FALSE, cache=TRUE}
+```{r include=FALSE, warning=FALSE, cache=TRUE}
 
 # Setting up all of the data used below 
 # read in the base data
@@ -391,7 +391,7 @@ better_players %>%
 ---
 
 ## Where do Desirable Events Lie on the Relationship Between Launch Angle and Hit Distance?
-```{r echo = FALSE}
+```{r}
 better_players %>%
    filter(effective_speed > 60,
           events %in% (c("single", "triple", "double", "home_run"))) %>%
