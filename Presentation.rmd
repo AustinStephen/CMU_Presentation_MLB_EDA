@@ -418,7 +418,7 @@ How Does Variability In Baseball Stadiums Impact Batting Statistics?
 ]
 
 .pull-right[
-![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/elevationv2.jpg)
+![](https://raw.githubusercontent.com/avaitt/cmsacamp-eda-project/main/coors_field.jpg)
 ]
 
 ???
